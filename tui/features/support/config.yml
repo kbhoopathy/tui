@@ -1,0 +1,7 @@
+browser: chrome
+headless: false
+app_version: 2.5.6
+environment: production
+#environment: qa
+timeout: 20
+long_timeout: 60
