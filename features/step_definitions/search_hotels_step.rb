@@ -14,6 +14,7 @@ end
 
 When(/^I select "(Espain|Portugal|Brasil)" from the location$/) do |country|
   on BasePage do |page|
+    page.allow_cookies_element.when_not_present
     location = page.location_abbreviation(country)
     page.select_country(location).when_present.click
   end
@@ -62,7 +63,8 @@ end
 And(/^I select future date range one month from the current date$/) do
   on SearchHotel do |page|
     page.calendar_icon_element.click
-    sleep 5
+    page.apply_date_selection_button_element.when_present
+
     page.select_date($tc.data['start_date'].strftime("%Y-%m-%d")).when_present.click
     page.select_date($tc.data['end_date'].strftime("%Y-%m-%d")).when_present.click
     page.apply_date_selection_button_element.click
@@ -141,7 +143,7 @@ end
 
 When(/^I click on reservation button on the first hotel$/) do
   on SearchHotel do |page|
-    $tc.data['selected_hotel'] = page.hotel_names_elements.first.text
+    $tc.data['selected_hotel'] = page.hotel_names_element.when_present.text
     page.reservation_button_elements.first.click
   end
 end
@@ -161,7 +163,6 @@ end
 
 And(/^I verify the price displayed for the selected hotel$/) do
   on SearchHotel do |page|
-    price = page.room_price_elements.map{|element| element.text}
-    puts "price: #{price}"
+    price = page.room_price_elements.map { |element| element.text }
   end
 end

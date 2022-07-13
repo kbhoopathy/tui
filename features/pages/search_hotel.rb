@@ -25,7 +25,7 @@ class SearchHotel < BasePage
   element(:result_destination, xpath: "//div[@data-qa='quick_search']//search-start")
   element(:result_date_range, xpath: "//span[@data-qa='mobile_summary_date_picker_trigger_button_caption']")
   element(:result_pax_count, xpath: "//span[@data-qa='mobile_summary_guest_picker_trigger_button_caption']")
-  elements(:hotel_names, xpath: "//h2[@data-qa='offer_tile_title']")
+  element(:hotel_names, xpath: "//h2[@data-qa='offer_tile_title']")
   elements(:reservation_button, xpath: "//button[@data-qa='button']")
   elements(:room_price, xapth: "//p[@class='room-offer__price room-offer__price--desktop']/font//font")
 end
